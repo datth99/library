@@ -25,14 +25,14 @@
           <form role="form" method="POST" action="{{route('student.store')}}">
               @csrf
             <div class="form-group">
-              <label>Họ và tên</label>
+              <label>Họ và tên (*)</label>
               <input type="text" class="form-control" name="name" placeholder="Nhập họ và tên..." value="{{ old('name') }}">
                 @error('name')
                     <div class="text text-danger">{{ $message }}</div>
                 @enderror
             </div>
               <div class="form-group">
-                  <label>Mã sinh viên</label>
+                  <label>Mã sinh viên (*)</label>
                   <input type="text" class="form-control" name="student_code" placeholder="Nhập mã sinh viên..." maxlength="9" value="{{ old('student_code') }}">
                   @error('student_code')
                     <div class="text text-danger">{{ $message }}</div>
@@ -40,7 +40,7 @@
               </div>
 
               <div class="form-group">
-                  <label>Mật khẩu</label>
+                  <label>Mật khẩu (*)</label>
                   <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu..." value="{{ old('password') }}">
                   @error('password')
                     <div class="text text-danger">{{ $message }}</div>
@@ -48,7 +48,7 @@
               </div>
 
               <div class="form-group">
-                  <label>Nhập lại mật khẩu</label>
+                  <label>Nhập lại mật khẩu (*)</label>
                   <input type="password" class="form-control" name="password_confirmation" placeholder="Xác nhận lại mật khẩu..."  >
                   @error('password_confirmation')
                     <div class="text text-danger">{{ $message }}</div>
@@ -56,7 +56,7 @@
               </div>
 
             <div class="form-group">
-              <label>Email</label>
+              <label>Email (*)</label>
               <input type="email" name="email" class="form-control" placeholder="Nhập email..." value="{{ old('email') }}">
                   @error('email')
                     <div class="text text-danger">{{ $message }}</div>
@@ -64,7 +64,7 @@
             </div>
   
             <div class="form-group">
-              <label>Khoa</label>
+              <label>Khoa (*)</label>
               <select class="form-control custom-select" name="department_id" required>
                   <option value="1">Công nghệ thông tin</option>
                   <option value="2">An toàn thông tin</option>

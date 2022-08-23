@@ -3,6 +3,9 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\RegisterBookController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 /*
@@ -35,6 +38,18 @@ Route::middleware('auth')->group(function(){
     Route::post('admin/{id}/update',[AdminController::class, 'update'])->name('admin.update');
     Route::get('admin/{id}/delete',[AdminController::class, 'delete'])->name('admin.delete');
 
+    Route::get('book',[BookController::class, 'list'])->name('book');
+    Route::get('book/add',[BookController::class, 'add'])->name('book.add');
+    Route::post('book/store',[BookController::class, 'store'])->name('book.store');
+    Route::get('book/{id}/edit',[BookController::class, 'edit'])->name('book.edit');
+    Route::get('book/detail',[BookController::class, 'detail'])->name('book.detail');
+    Route::post('book/{id}/update',[BookController::class, 'update'])->name('book.update');
+    Route::get('book/{id}/delete',[BookController::class, 'delete'])->name('book.delete');
+
+    Route::get('document',[DocumentController::class, 'list'])->name('document');
+    Route::get('document/detail',[DocumentController::class, 'detail'])->name('document.detail');
+
+    Route::get('register-book',[RegisterBookController::class, 'list'])->name('register-book');
 });
 
 Route::get('login',[AuthController::class, 'login']);

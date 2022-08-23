@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('register_book', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->integer('level');
-            $table->rememberToken();
+            $table->integer('book_id');
+            $table->integer('student_id');
+            $table->dateTime('time_start');
+            $table->dateTime('time_end');
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admin');
+        Schema::dropIfExists('register_book');
     }
 };

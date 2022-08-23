@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Support\Str;
+use App\Http\Requests\UpdateStudentRequest;
 use App\Http\Requests\StudentRequest;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,7 @@ class StudentController extends Controller
         $data = [
             'name' => $request->name,
             'student_code' => $request->student_code,
-            'password' => $request->password,
+            'password' => \Hash::make($request->password),
             'email' => $request->email,
             'department_id' => $request->department_id
         ];
@@ -35,15 +36,18 @@ class StudentController extends Controller
         return view('student.edit-student', compact('student'));
     }
 
-    public function update(StudentRequest $request, $id){
+    public function update(UpdateStudentRequest $request, $id){
        
         $data = [
             'name' => $request->name,
             'student_code' => $request->student_code,
-            'password' => $request->password,
             'email' => $request->email,
             'department_id' => $request->department_id
         ];
+
+        if($request->password){
+            $data['password'] = \Hash::make($request->password);
+        }
 
         Student::where('id', $id)->update($data);
 

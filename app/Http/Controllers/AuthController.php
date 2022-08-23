@@ -11,7 +11,7 @@ class AuthController extends Controller
         return view('login');
     }
 
-    public function goHome(AdminRequest $request){
+    public function goHome(Request $request){
         $data = [
             'email' => $request->email,
             'password' => $request->password,

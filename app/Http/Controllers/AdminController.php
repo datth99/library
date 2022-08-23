@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use Illuminate\Support\Str;
 use App\Http\Requests\AdminRequest;
+use App\Http\Requests\UpdateAdminRequest;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -21,7 +22,7 @@ class AdminController extends Controller
     public function store(AdminRequest $request){
         $data = [
             'name' => $request->name,
-            'password' => $request->password,
+            'password' => \Hash::make($request->password),
             'email' => $request->email,
             'level' => $request->level
         ];
@@ -34,13 +35,17 @@ class AdminController extends Controller
         return view('admin.edit-admin', compact('admin'));
     }
 
-    public function update(AdminRequest $request, $id){
+    public function update(UpdateAdminRequest $request, $id){
         $data = [
             'name' => $request->name,
-            'password' => $request->password,
             'email' => $request->email,
             'level' => $request->level
         ];
+
+        if($request->password){
+            $data['password'] = \Hash::make($request->password);
+        }
+
         Admin::where('id', $id)->update($data);
         return redirect('admin')->with('status','Cập nhật dữ liệu thành công!');
     }
