@@ -26,7 +26,7 @@
           <form role="form" method="POST" action="admin/{{ $admin->id }}/update">
               @csrf
               <div class="form-group">
-              <label>Họ và tên</label>
+              <label>Họ và tên (*)</label>
               <input type="text" class="form-control" name="name" placeholder="Nhập họ và tên..." value="{{ $admin->name }}">
                 @error('name')
                     <div class="text text-danger">{{ $message }}</div>
@@ -34,23 +34,23 @@
             </div>
 
               <div class="form-group">
-                  <label>Mật khẩu </label>
-                  <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu..." value="{{ $admin->password }}">
+                  <label>Mật khẩu mới </label>
+                  <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu..." >
                   @error('password')
                     <div class="text text-danger">{{ $message }}</div>
                   @enderror
               </div>
 
               <div class="form-group">
-                  <label>Nhập lại mật khẩu</label>
-                  <input type="password" class="form-control" name="password_confirmation" placeholder="Xác nhận lại mật khẩu..."  value="{{ $admin->password }}">
+                  <label>Nhập lại mật khẩu mới</label>
+                  <input type="password" class="form-control" name="password_confirmation" placeholder="Xác nhận lại mật khẩu..." >
                   @error('password_confirmation')
                     <div class="text text-danger">{{ $message }}</div>
                   @enderror
               </div>
 
             <div class="form-group">
-              <label>Email</label>
+              <label>Email (*)</label>
               <input type="email" name="email" class="form-control" placeholder="Nhập email..." value="{{ $admin->email }}">
                   @error('email')
                     <div class="text text-danger">{{ $message }}</div>
@@ -58,7 +58,7 @@
             </div>
   
             <div class="form-group">
-              <label>Quyền</label>
+              <label>Quyền (*)</label>
                 <select class="form-control custom-select" name="level" required>
                   <option @if($admin->level == 0) selected @endif value="0">Quản trị viên</option>
                   <option @if($admin->level == 1) selected @endif value="1">Cộng tác viên</option>
